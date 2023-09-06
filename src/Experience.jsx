@@ -6,7 +6,10 @@ const Experience = () => {
     
     
     const boxRef = useRef();
-    useFrame((state, delta)=>{ {boxRef.current.position.x >= 10? boxRef.current.position.x = 3:  boxRef.current.position.x += delta} ; boxRef.current.position.y =  Math.sin(boxRef.current.position.x)})
+    useFrame((state, delta)=>{ {boxRef.current.position.x >= 10? boxRef.current.position.x = 3:  boxRef.current.position.x += delta*2} ; boxRef.current.position.y =  Math.sin(boxRef.current.position.x)*3})
+
+    const boxRef2 = useRef();
+    useFrame((state, delta)=>{ {boxRef2.current.position.x >= 10? boxRef2.current.position.x = 3:  boxRef2.current.position.x += delta*2} ; boxRef2.current.position.y =  Math.cos(boxRef2.current.position.x)*3})
 return(
  
  <>
@@ -31,6 +34,10 @@ return(
     </mesh>
 
     <mesh ref={boxRef} position={[3,0,0]}>
+        <boxGeometry args={[1,1,1]}/>
+        <meshStandardMaterial color = "green"/>
+    </mesh>
+    <mesh ref={boxRef2} position={[3,0,0]}>
         <boxGeometry args={[1,1,1]}/>
         <meshStandardMaterial color = "green"/>
     </mesh>
