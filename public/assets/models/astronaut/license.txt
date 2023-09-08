@@ -1,0 +1,11 @@
+Model Information:
+* title:	Character . The Lostronauts
+* source:	https://sketchfab.com/3d-models/character-the-lostronauts-51fafc13ccb94fd0959eafa41d5331f7
+* author:	A . Priabudiman (https://sketchfab.com/priabudiman)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Character . The Lostronauts" (https://sketchfab.com/3d-models/character-the-lostronauts-51fafc13ccb94fd0959eafa41d5331f7) by A . Priabudiman (https://sketchfab.com/priabudiman) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
