@@ -3,6 +3,8 @@ import { useRef } from "react";
 import { OrbitControls } from "@react-three/drei";
 import { useTexture } from "@react-three/drei";
 import Astronaut from "./world/Astronaut";
+import Lights from "./world/Lights";
+import Enviroments from "./world/Enviroments";
 
 
 const Experience = () => {
@@ -29,13 +31,14 @@ const Experience = () => {
 
     const sphereRef2 = useRef();
     useFrame((state, delta)=>{ {sphereRef2.current.position.x >= 60? sphereRef2.current.position.x = -100:  sphereRef2.current.position.x += delta*5} ; sphereRef2.current.position.y =  Math.cos(sphereRef2.current.position.x)*10})
+
+    const coneRef = useRef();
+    useFrame((state, delta)=>{ coneRef.current.rotation.x = Math.sin(state.clock.getElapsedTime())})
 return(
  
  <>
     <OrbitControls makeDefault></OrbitControls>
-    <ambientLight intensity={0.5} />
-    <directionalLight position={[10, 10, 5]} intensity={2} />
-
+    <Lights/>
     <mesh ref={sphereRef} position={[-100,0,-20]}>
         <sphereGeometry/>
         <meshStandardMaterial {...propsTexture_snow}/>
@@ -46,9 +49,9 @@ return(
         <meshStandardMaterial {...propsTexture_earth}/>
     </mesh>
 
-    <mesh position={[0,-4,0]} scale={6}>
+    <mesh position={[0,-4,0]} scale={6} receiveShadow={true}>
         <boxGeometry args={[1,1,1]}/>
-        <meshStandardMaterial color = "blue"/>
+        <meshStandardMaterial color = "purple"/>
     </mesh>
 
     <mesh position={[0,10,-100]}  scale={10}>
@@ -56,17 +59,20 @@ return(
         <meshNormalMaterial color = "red"/>
     </mesh>
 
-    <mesh position={[-10,10,-10]} rotation={[0,0,Math.PI]} scale={4}>
+    <mesh ref={coneRef} position={[-1,-0.7,2]} rotation={[0,0,Math.PI]} scale={0.5} castShadow>
         <coneGeometry/>
         <meshPhongMaterial color = "orange"/>
     </mesh>
 
-    <Astronaut/>
-    
-    
+    <Astronaut position-y={-1}/>
+
+    <Enviroments/>
+        
 
  </>
 )
 }
+
+
 
 export default Experience;

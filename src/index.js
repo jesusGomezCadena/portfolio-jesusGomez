@@ -12,6 +12,7 @@ root.render(
     <Info name={"jesus"} biography={"aprendiendo react three fiber"}/>
     <Canvas
     camera = {{position: [2,0,5]}}
+    shadows
     >
         <Experience/>   
     </Canvas>
