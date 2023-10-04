@@ -17,7 +17,7 @@ const Lights = () => {
         <spotLight
             ref={spotLightRef}
             position={[0, 4, 2]}
-            angle={Math.PI / 12}
+            angle={Math.PI / 10}
             intensity={200}
             color={"orange"}
             penumbra={1}

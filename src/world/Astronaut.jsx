@@ -25,7 +25,7 @@ const Astronaut = (props) => {
                 <group name="RootNode">
                   <group name="Object_4">
                     <primitive object={nodes._rootJoint} />
-                    <skinnedMesh
+                    <skinnedMesh                      
                       name="Object_7"
                       geometry={nodes.Object_7.geometry}
                       material={materials.None}

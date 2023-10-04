@@ -11,8 +11,8 @@ body,
 canvas{
     touch-action: none;
 }
-
 #info{
+    color: white;
     position: absolute;
 	top: 10px;
 	width: 100%;
