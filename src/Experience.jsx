@@ -8,6 +8,7 @@ import Lights from "./world/Lights";
 import Enviroments from "./world/Enviroments";
 import WelcomeText from "./world/WelcomeText";
 import { useState } from "react";
+import { Physics, RigidBody } from "@react-three/rapier";
 
 const Experience = () => {
     
@@ -45,7 +46,7 @@ const Experience = () => {
     useFrame((state, delta)=>{ coneRef.current.rotation.x = Math.sin(state.clock.getElapsedTime())})
 return(
  
- <>
+ <Physics>
     <OrbitControls makeDefault></OrbitControls>
     <Lights/>
     <mesh ref={sphereRef} position={[-100,0,-20]}>
@@ -58,12 +59,21 @@ return(
         <meshStandardMaterial {...propsTexture_earth}/>
     </mesh>
 
-    <mesh position={[0,-4,0]} scale={6} receiveShadow={true}
-    >
+    <RigidBody colliders={"ball"} gravityScale={0.1} restitution={1.5}>
+        <mesh position={[1,3,-1.5]} scale={0.5}>
+            <sphereGeometry/>
+            <meshNormalMaterial/>
+        </mesh>
+    </RigidBody>
+
+    <RigidBody type="fixed">
+        <mesh position={[0,-4,0]} scale={6} receiveShadow={true}
+        >
         <boxGeometry args={[1,1,1]}/>
         <meshStandardMaterial color = "purple"/>
         
-    </mesh>
+        </mesh>
+    </RigidBody>
 
     <mesh position={[-30,10,-100]}  scale={10}>
         <torusGeometry />
@@ -98,7 +108,7 @@ return(
     
         
 
- </>
+ </Physics>
 )
 }
 
