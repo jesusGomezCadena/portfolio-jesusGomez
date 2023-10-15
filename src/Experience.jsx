@@ -4,6 +4,7 @@ import { OrbitControls } from "@react-three/drei";
 import { useTexture, Float, Text } from "@react-three/drei";
 import { Color } from "three";
 import Astronaut from "./world/Astronaut";
+import Spacecraft from "./world/Spacecraft";
 import Lights from "./world/Lights";
 import Enviroments from "./world/Enviroments";
 import WelcomeText from "./world/WelcomeText";
@@ -121,6 +122,10 @@ return(
     </Float>
     )}
     <Astronaut position-y={-1} onClick={cambiarVisibilidad}/>
+
+    <RigidBody  colliders={"hull"} gravityScale={-1} >
+    <Spacecraft position={[2,-20,-20]} rotation-y={Math.PI/2} />
+    </RigidBody>
 
     <WelcomeText/>
 
