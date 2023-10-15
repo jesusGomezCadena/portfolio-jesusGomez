@@ -7,7 +7,7 @@ import Astronaut from "./world/Astronaut";
 import Lights from "./world/Lights";
 import Enviroments from "./world/Enviroments";
 import WelcomeText from "./world/WelcomeText";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Physics, RigidBody } from "@react-three/rapier";
 
 const Experience = () => {
@@ -31,9 +31,30 @@ const Experience = () => {
 
     const [descVisible, setDescVisible] = useState(false);
 
+    const [play, setPlay] = useState(false);
+    const [hitSound] = useState(() => new Audio('/assets/sounds/hit.wav'));
+    
+    useEffect(() => {
+        if (play) {
+            hitSound.currentTime = 0
+            hitSound.volume = Math.random()
+            hitSound.play();
+        }
+    }, [play]);
+
+    
     const cambiarVisibilidad = () =>
     {
         setDescVisible(!descVisible)
+    }
+    const ballBodyRef = useRef();
+    
+    useEffect(() => {
+        ballBodyRef.current.sleep()
+    },[])
+
+    const onHandleBox = () => {
+        ballBodyRef.current.wakeUp();
     }
 
     const sphereRef = useRef();
@@ -59,14 +80,14 @@ return(
         <meshStandardMaterial {...propsTexture_earth}/>
     </mesh>
 
-    <RigidBody colliders={"ball"} gravityScale={0.1} restitution={1.5}>
+    <RigidBody ref={ballBodyRef} colliders={"ball"} gravityScale={0.1} restitution={1.5} onCollisionEnter={()=>setPlay(!play)}>
         <mesh position={[1,3,-1.5]} scale={0.5}>
             <sphereGeometry/>
             <meshNormalMaterial/>
         </mesh>
     </RigidBody>
 
-    <RigidBody type="fixed">
+    <RigidBody type="fixed" onClick={onHandleBox}>
         <mesh position={[0,-4,0]} scale={6} receiveShadow={true}
         >
         <boxGeometry args={[1,1,1]}/>
